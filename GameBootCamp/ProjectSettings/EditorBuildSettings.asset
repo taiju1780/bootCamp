@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/koga/Player/SelectScene.unity
+    guid: b08f3369e61e011489d0b94025be503f
+  - enabled: 1
+    path: Assets/koga/Player/PlayerTestScene.unity
+    guid: 069f3983c1ba0ce408bbcfdd0d352527
   m_configObjects: {}
