@@ -6,6 +6,7 @@ public class CameraControll : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
+    private Move move;
     public Transform verRot;
     public Transform horRot;
     //カメラとプレイヤーとの差分
@@ -23,11 +24,19 @@ public class CameraControll : MonoBehaviour
     // Update is called once per frame
     void LateUpdate()
     {
+        float viasHorizontal = Input.GetAxis("Horizontal");
+
         if (Mathf.Approximately(Time.timeScale, 0f))
         {
             return;
         }
 
-        transform.position = player.transform.position + offset;
+        move = player.GetComponent<Move>();
+
+        if (!move.GetDieFlag())
+        {
+            transform.position = player.transform.position + offset;
+            
+        }
     }
 }
