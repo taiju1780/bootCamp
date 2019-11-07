@@ -45,6 +45,8 @@ public class Move : MonoBehaviour
     [SerializeField] private GameObject hitEffect;
     [SerializeField] private GameObject hitEffectpos;
     [SerializeField] private GameObject rotaEffect;
+    [SerializeField] private GameObject powerEffect;
+    [SerializeField] private GameObject invincibleeffect;
     private effect _effect;
     private effectpos _effectpos;
 
@@ -72,8 +74,8 @@ public class Move : MonoBehaviour
         bound = new Vector3();
         state = State.normal;
         scene = new SceneChange();
-        Sound.LoadBGM("BGM", "進め！テントウムシ");
-        Sound.PlayBGM("BGM");
+
+        Sound.LoadSE("Hit", "kick-low1");
     }
 
     // Update is called once per frame
@@ -160,8 +162,12 @@ public class Move : MonoBehaviour
         if (invincible)
         {
             invincibletime--;
+            powerEffect.SetActive(true);
+            invincibleeffect.SetActive(true);
             if (invincibletime <= 0)
             {
+                powerEffect.SetActive(false);
+                invincibleeffect.SetActive(false);
                 invincibletime = 300;
                 invincible = false;
             }
@@ -208,6 +214,7 @@ public class Move : MonoBehaviour
             _effectpos.HiteffectPos(effect);
             _effect.HitEffect();
             itemspeed = 0;
+            Sound.PlaySE("Hit");
         }
     }
 
@@ -217,6 +224,7 @@ public class Move : MonoBehaviour
         bound = push;
         _effectpos.HiteffectPos(effect);
         _effect.HitEffect();
+        Sound.PlaySE("Hit");
         itemspeed = 0;
     }
 

@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class ScenarioScript : MonoBehaviour
 {
     [SerializeField] List<Sprite> list = new List<Sprite>();
+
     bool beforeInput;
     int spriteNum = 0;
     Image image;
@@ -17,7 +18,7 @@ public class ScenarioScript : MonoBehaviour
     {
         beforeInput = false;
         image = GameObject.Find("ScenarioImage").GetComponent<Image>();
-
+        
         image.sprite = list[spriteNum];
         sceneChange = GameObject.Find("SceneManager").GetComponent<SceneChange>();
     }

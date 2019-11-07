@@ -20,12 +20,12 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _MaskTex:
-        m_Texture: {fileID: 2800000, guid: 5eb607b8f97386c49a3881e3437c1dd3, type: 3}
+        m_Texture: {fileID: 2800000, guid: 10c4b03c1d16a9b44922718bc328f054, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - _ColorMask: 15
-    - _Range: 1.0019943
+    - _Range: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0

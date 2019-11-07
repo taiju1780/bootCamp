@@ -18,6 +18,8 @@ public class ChaserMove : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         transform.position = player.transform.position - new Vector3(15, 0, 0);
         speed = 1;
+        Sound.LoadBGM("typoon", "wind2");
+        Sound.PlayBGM("typoon");
     }
 
     // Update is called once per frame
