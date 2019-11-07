@@ -48,11 +48,5 @@ public class WallMove : MonoBehaviour
 
         // 移動
         direction = new Vector3(0, sin * speed, 0);
-
-        // 時間後削除
-        if (time > deleteTime)
-        {
-            Destroy(this.gameObject);
-        }
     }
 }

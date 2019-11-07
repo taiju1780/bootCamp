@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class Hitpoint : MonoBehaviour
 {
-    [SerializeField] static int hitpoint = 3;
+    [SerializeField] static int hitpoint = 0;
     [SerializeField] GameObject player;
-    float boundnum = 25.0f;
+    float boundWall = 25.0f;
+    float boundObs = 40.0f;
     Vector2 pushvec;
+    Vector2 effectvec;
     private Move move;
 
     // Start is called before the first frame update
@@ -20,10 +22,6 @@ public class Hitpoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       if(hitpoint == 0)
-        {
-            //SceneManager.LoadScene("ResultScene");
-        }
     }
 
     private void OnCollisionEnter(Collision col)
@@ -32,16 +30,37 @@ public class Hitpoint : MonoBehaviour
         {
             if (col.gameObject.tag == "Obstacle")
             {
-                hitpoint--;
-                move.CollisionObstract();
+                Vector2 colpos = col.gameObject.transform.position;
+                Vector2 playerpos = new Vector2(player.transform.position.x, player.transform.position.y);
+                Vector2 ray = colpos - playerpos;
+                pushvec = -ray.normalized * boundObs;
+                effectvec = ray.normalized * 0.3f;
+                move.CollisionObstract(pushvec, effectvec);
+            }
+            if (col.gameObject.tag == "Chaser")
+            {
+                hitpoint++;
+                move.CollisionChaser();
             }
             if (col.gameObject.tag == "Wall")
             {
                 Vector2 colpos = col.gameObject.transform.position;
                 Vector2 playerpos = new Vector2(player.transform.position.x, player.transform.position.y);
                 Vector2 ray = colpos - playerpos;
-                pushvec = -ray.normalized * boundnum;
-                move.CollisionWall(pushvec);
+                pushvec = -ray.normalized * boundWall;
+                effectvec = ray.normalized * 0.3f;
+                move.CollisionWall(pushvec, effectvec);
+            }
+        }
+    }
+
+    private void OnCollisionStay(Collision col)
+    {
+        if (!move.GetDieFlag())
+        {
+            if(col.gameObject.tag == "Floor")
+            {
+                move.CollisionFloar();
             }
         }
     }
@@ -50,18 +69,17 @@ public class Hitpoint : MonoBehaviour
     {
         if (!move.GetDieFlag())
         {
-            if (col.gameObject.tag == "Obstacle")
+            if (col.gameObject.tag == "Chaser")
             {
-                hitpoint--;
-                move.CollisionObstract();
+                move.CollisionChaser();
             }
-            if (col.gameObject.tag == "Wall")
+            if (col.gameObject.tag == "ring")
             {
-                Vector2 colpos = col.gameObject.transform.position;
-                Vector2 playerpos = new Vector2(player.transform.position.x, player.transform.position.y);
-                Vector2 ray = colpos - playerpos;
-                pushvec = -ray.normalized * boundnum;
-                move.CollisionWall(pushvec);
+                move.CollisionRing();
+            }
+            if (col.gameObject.tag == "bamboo")
+            {
+                move.CollisionBigBamb();
             }
         }
     }

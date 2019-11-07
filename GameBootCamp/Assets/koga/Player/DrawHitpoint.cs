@@ -27,6 +27,6 @@ public class DrawHitpoint : MonoBehaviour
     private void DrawHitPoint()
     {
         Text hp = hptext.GetComponent<Text>();
-        hp.text = "残りHP" + keephp;
+        hp.text = "死んだ回数" + keephp;
     }
 }

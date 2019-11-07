@@ -6,9 +6,27 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/koga/SelectScene.unity
-    guid: b08f3369e61e011489d0b94025be503f
+    path: Assets/Master/TitleScene.unity
+    guid: 1ff9123f512369f44bf64acb3ce3eb5e
   - enabled: 1
-    path: Assets/koga/PlayerTestScene.unity
-    guid: 069f3983c1ba0ce408bbcfdd0d352527
+    path: Assets/Master/StageSelect/StageSelect.unity
+    guid: b9cb2d76745b4d543821e9f6861c1e09
+  - enabled: 1
+    path: Assets/Master/SkyStage.unity
+    guid: 5a090ec107ba27242ae3a60782a40f01
+  - enabled: 1
+    path: Assets/Master/RoughWeatherStage.unity
+    guid: 4fb554a73b95e304f8be60d808edd7ca
+  - enabled: 1
+    path: Assets/Master/UniverseStage.unity
+    guid: 4dabd65769f077042a1bce28f7a7673e
+  - enabled: 1
+    path: Assets/Master/ScenarioScene.unity
+    guid: 50850efb98904264d991d88b0c1eb624
+  - enabled: 1
+    path: Assets/Master/ResultWin.unity
+    guid: 1b2de5edcd59a474ba6279982058ad53
+  - enabled: 1
+    path: Assets/Master/ResultLose.unity
+    guid: 5b04fdd28f002c94380a26a2ce058d86
   m_configObjects: {}

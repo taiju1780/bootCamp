@@ -34,16 +34,33 @@ public class CreateObject : MonoBehaviour
     string strget = "";
 
     //CSVデータの行数
-    int gyou = 10;
+    int gyou = 2;
     //CSVデータの列数
-    int retu = 10;
+    int retu = 50;
 
-    int[,] map = new int[20, 20];   //マップ番号を格納するマップ用変数
+    int[,] map = new int[2, 50];   //マップ番号を格納するマップ用変数
     int[] iDat = new int[15];       //文字検索用
 
     // 縦横
     int line; 
     int column;
+
+    const float togeY = 6.0f;
+    const float togeTogeY = 2.0f;
+
+    enum TYPE_OBJECT
+    {
+        OBJECT_A,
+        OBJECT_B,
+        OBJECT_C,
+        OBJECT_TOGE,
+        OBJECT_D,
+        OBJECT_E,
+        OBJECT_F,
+        OBJECT_TOGE_MOVE,
+        GOAL,
+        TAKE,
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -51,9 +68,12 @@ public class CreateObject : MonoBehaviour
         line = 0;
         column = 0;
 
-        obj[0].transform.localScale = size;
-        obj[1].transform.localScale = size;
-        obj[2].transform.localScale = size;
+        obj[(int)TYPE_OBJECT.OBJECT_A].transform.localScale = size;
+        obj[(int)TYPE_OBJECT.OBJECT_B].transform.localScale = size;
+        obj[(int)TYPE_OBJECT.OBJECT_C].transform.localScale = size;
+        obj[(int)TYPE_OBJECT.OBJECT_D].transform.localScale = size;
+        obj[(int)TYPE_OBJECT.OBJECT_E].transform.localScale = size;
+        obj[(int)TYPE_OBJECT.OBJECT_F].transform.localScale = size;
         // CSVデータをstrに保存
         StringReader reader = new StringReader(csvDatas.text);
 
@@ -123,20 +143,54 @@ public class CreateObject : MonoBehaviour
         {
             for (int i = 0; i < retu; i++)
             {
-                // 各壁の配置
                 if (map[line, column] == 1)
                 {
-                    Instantiate(obj[0], new Vector3(intPositionX, 0.0f, 0.0f), Quaternion.identity);
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_A], new Vector3(intPositionX, Random.Range(-3, 3), 0.0f), Quaternion.identity);
                 }
 
                 if (map[line, column] == 2) 
                 {
-                    Instantiate(obj[1], new Vector3(intPositionX, 0.0f, 0.0f), Quaternion.identity);
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_B], new Vector3(intPositionX, Random.Range(-3, 3), 0.0f), Quaternion.identity);
                 }
 
                 if (map[line, column] == 3)
                 {
-                    Instantiate(obj[2], new Vector3(intPositionX, 0.0f, 0.0f), Quaternion.identity);
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_C], new Vector3(intPositionX, Random.Range(-3, 3), 0.0f), Quaternion.identity);
+                }
+
+                if (map[line, column] == 4)
+                {
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_TOGE], new Vector3(intPositionX, togeY, 0.0f), Quaternion.identity);
+                }
+
+                if (map[line, column] == 5)
+                {
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_D], new Vector3(intPositionX, 0.0f, 0.0f), Quaternion.identity);
+                }
+
+                if (map[line, column] == 6)
+                {
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_E], new Vector3(intPositionX, 0.0f, 0.0f), Quaternion.identity);
+                }
+                if (map[line, column] == 7)
+                {
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_F], new Vector3(intPositionX, 0.0f, 0.0f), Quaternion.identity);
+                }
+
+                if (map[line, column] == 8)
+                {
+                    Instantiate(obj[(int)TYPE_OBJECT.OBJECT_TOGE_MOVE], new Vector3(intPositionX, togeTogeY, 0.0f), Quaternion.identity);
+                }
+
+                if (map[line, column] == 9)
+                {
+                    Instantiate(obj[(int)TYPE_OBJECT.GOAL], new Vector3(intPositionX, 0, 0.0f), Quaternion.identity);
+                }
+
+                // 各壁の配置
+                if (map[line, column] == 10)
+                {
+                    Instantiate(obj[(int)TYPE_OBJECT.TAKE], new Vector3(intPositionX, Random.Range(-5, 5), 0.0f), new Quaternion(0, 180, 0, 0));
                 }
 
                 // 次の右のマップ番号を読み込む

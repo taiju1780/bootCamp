@@ -4,11 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstract
+  - SceneManager
   - Obstacle
   - Wall
-  - Floor
-  - Ceiling
+  - Chaser
+  - Goal
+  - item_s
+  - Fade
+  - bamboo
   layers:
   - Default
   - TransparentFX
@@ -18,8 +21,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Obs
+  - Wall
   - 
   - 
   - 
